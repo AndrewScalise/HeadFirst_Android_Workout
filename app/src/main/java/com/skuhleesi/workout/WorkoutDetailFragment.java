@@ -3,6 +3,7 @@ package com.skuhleesi.workout;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,12 @@ public class WorkoutDetailFragment extends Fragment {
         if(savedInstanceState != null){
             workoutId = savedInstanceState.getLong("workoutId");
         }
+        FragmentTransaction ft = getChildFragmentManager().beginTransaction();
+        StopwatchFragment stopwatchFragment = new StopwatchFragment();
+        ft.replace(R.id.stopwatch_container, stopwatchFragment);
+        ft.addToBackStack(null);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        ft.commit();
     }
 
     @Override
